@@ -1,6 +1,9 @@
 # Cryptonetwork
 
-**TODO: Add description**
+Elixir Cryptography Library.
+1. One time pad Modular/XOR
+2. Simple RSA
+3. Diffie-Hellman
 
 ## Installation
 
