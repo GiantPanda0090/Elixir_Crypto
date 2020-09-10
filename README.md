@@ -3,12 +3,24 @@
 Run iex -S mix to compile Elixir Code
 
 Elixir Cryptography Library.
-1. One time pad Modular/XOR
-2. Simple RSA
-3. Diffie-Hellman - Demo: Alice exchange message 16 to Bob
-                          Cryptonetwork.Diffkeyex.demo(23,16) 
+1. One time pad Modular / XOR
+2. Simple RSA Erl :crypto / custom made - 
 
-## Installation
+Demo:
+
+Benchmark:
+Cryptonetwork.Rsa.bench_measure(plain_text,[<keysize list>])
+
+Test:
+Cryptonetwork.excrypto_encrypt(plain_text,key_size)
+
+
+3. Diffie-Hellman -
+
+ Demo: Alice exchange message 16 to Bob: 
+Cryptonetwork.Diffkeyex.demo(23,16) 
+
+## Installation (not available yet)
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `cryptonetwork` to your list of dependencies in `mix.exs`:
