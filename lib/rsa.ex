@@ -65,14 +65,21 @@ defmodule Cryptonetwork.Rsa do
     lst = to_charlist bit_str
     pad = List.last(lst)
     plaintext_length = length(lst) - pad
-    lst
-    |> Enum.slice(0, plaintext_length)
+	if plaintext_length > 0 do 
+		lst
+		|> Enum.slice(0, plaintext_length)
+	else
+		bit_str
+	end
   end
 
   def padding_pkcs(plain_text,bit_size,p) do
     bit = byte_size(:binary.encode_unsigned(p)) - bit_size
     if bit < 0 do
       raise  ArgumentError, message: "Include plain text is  bigger than prime, p = " <> to_string p
+	end
+	if bit = 0 do
+		plain_text
     else
       list_append(plain_text, bit,1,[])
   end
@@ -160,6 +167,8 @@ end
     {pem, 0} = System.cmd "openssl", ["genrsa",key_1]
     key = pem    |> :public_key.pem_decode |> List.first |> :public_key.pem_entry_decode
     {:RSAPrivateKey, :'two-prime', n , e, d, p, q, _e1, _e2, _c, _other} =key
+	IO.puts("Usinging following value as input")
+	IO.inspect({:RSAPrivateKey, :'two-prime', n , e, d, p, q, _e1, _e2, _c, _other})
     rsa_native = native_main(plain_text,n,e,d)
 
     rsa_custom =  custom_main(p,q,e,plain_text)
