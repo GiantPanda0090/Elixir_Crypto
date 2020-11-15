@@ -30,10 +30,10 @@ end
     %{status: :encrypt_native,key: key,cipher: cipher}
     end
 
-    def one_time_encrypt(key, data,:native) do
-      cipher = :crypto.crypto_one_time(:aes_128_ctr,key, <<0::128>>,data,true)
-      %{status: :encrypt_native,key: key,cipher: cipher}
-      end
+  def one_time_encrypt(key, data,:native) do
+    cipher = :crypto.crypto_one_time(:aes_128_ctr,key, <<0::128>>,data,true)
+    %{status: :encrypt_native,key: key,cipher: cipher}
+    end
 
   def one_time_decrypt(key,cipher, :native) do
     data = :crypto.crypto_one_time(:aes_128_ctr,key, <<0::128>>,cipher,false)
